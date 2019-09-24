@@ -1,0 +1,69 @@
+{% extends 'layout.html' %}
+
+{% block title %}   Home   {%endblock%}
+
+{%block logout%}
+    <li class="nav-item" >
+            <a class="nav-link" href="{{ url_for('logout') }}"> Log Out</a>
+    </li>
+{%endblock%}
+
+{%block body%}
+
+    <h2 class="text-center mt-sm-5">ٍSearch For any Books you Want</h2>
+    <form class="form-inline justify-content-center mt-sm-4" action="/search">
+        <input class="form-control ml-sm-5" type="text" name="search"  placeholder="Search"/>
+        <button class="btn btn-success ml-sm-3 ">Search</button>
+    </form>
+
+    <div class="d-flex justify-content-around p-3 flex-wrap mt-sm-5 ">
+        <div class="p-2 bg-info w-25 bg-light text-dark border border-dark">
+            
+            <h4 class="text-center">{{title}}</h4>
+            <p class="text-center">{{author}}</p>
+            <p class="text-center">{{isbn}}</p>
+            <div class="text-center"><a href="/book/{{isbn}}">Go To Book Page</a></div>
+            
+        </div>
+        <div class="p-2 bg-info w-25 bg-light text-dark border border-dark">
+            <h4 class="text-center">{{title1}}</h4>
+            <p class="text-center">{{author1}}</p>
+            <p class="text-center">{{isbn1}}</p>
+            <div class="text-center"><a href="/book/{{isbn1}}">Go To Book Page</a></div>
+
+        </div>
+        <div class="p-2 bg-info w-25 bg-light text-dark border border-dark">
+            <h4 class="text-center">{{title2}}</h4>
+            <p class="text-center">{{author2}}</p>
+            <p class="text-center">{{isbn2}}</p>
+            <div class="text-center"><a href="/book/{{isbn2}}">Go To Book Page</a></div>
+
+        </div>
+       
+    </div>
+    <div class="d-flex justify-content-around p-3 flex-wrap mt-sm-5">
+        <div class="p-2 bg-info w-25 bg-light text-dark border border-dark">
+            <h4 class="text-center">{{title3}}</h4>
+            <p class="text-center">{{author3}}</p>
+            <p class="text-center">{{isbn3}}</p>
+            <div class="text-center"><a href="/book/{{isbn3}}">Go To Book Page</a></div>
+
+        </div>
+        <div class="p-2 bg-info w-25 bg-light text-dark border border-dark">
+            <h4 class="text-center">{{title4}}</h4>
+            <p class="text-center">{{author4}}</p>
+            <p class="text-center">{{isbn4}}</p>
+            <div class="text-center"><a href="/book/{{isbn4}}">Go To Book Page</a></div>
+
+        </div>
+        <div class="p-2 bg-info w-25 bg-light text-dark border border-dark">
+            <h4 class="text-center">{{title5}}</h4>
+            <p class="text-center">{{author5}}</p>
+            <p class="text-center">{{isbn5}}</p>
+            <div class="text-center"><a href="/book/{{isbn5}}">Go To Book Page</a></div>
+
+        </div>
+       
+    </div>
+
+{%endblock%}

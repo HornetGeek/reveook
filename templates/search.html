@@ -1,0 +1,27 @@
+{% extends 'layout.html' %}
+
+{% block title %}   result   {%endblock%}
+
+{% block logout %}
+    <li class="nav-item" >
+            <a class="nav-link" href="{{ url_for('logout') }}"> Log Out</a>
+    </li>
+{% endblock %}
+ 
+{% block body %}
+        <div class="d-flex justify-content-around p-3 flex-wrap mt-sm-5 ">
+            {% for book in geterBook %}
+                <div class="m-sm-5 p-2 bg-info w-25 bg-light text-dark border border-dark">
+                    
+                    <h4 class="text-center">{{book[1]}}</h4>
+                    <p class="text-center">{{book[2]}}</p>
+                    <p class="text-center">{{book[0]}}</p>
+                
+                    
+                    <div class="text-center"><a href="/book/{{book[0]}}">Go To Book Page</a></div>
+                    
+                </div>
+            {% endfor %}
+        </div>
+    
+{% endblock %}

@@ -1,0 +1,70 @@
+{% extends "layout.html" %}
+
+{% block title %} book page {% endblock %}
+
+{% block logout %}
+    <li class="nav-item" >
+            <a class="nav-link" href="{{ url_for('logout') }}"> Log Out</a>
+    </li>
+{% endblock %}
+
+{% block body %}
+<div class="d-flex p-3 justify-content-around">
+    <div>
+        <h2 class="text-center m-sm-3 mt-sm-5" >{{name}}</h2>
+        <h5 class="text-center">Author :{{author}}</h5>
+        <h5 class="text-center">published :{{published}}</h5>
+    </div>
+    <div>
+        <h2 class="text-center m-sm-3 mt-sm-5"><img src="http://d.gr-assets.com/misc/1454549184-1454549184_goodreads_misc.jpg" width="220" height="60" > </h2>
+        <h5 class="text-center">N of Ratings:{{bookres['books'][0]['ratings_count']}}</h5>
+        <h5 class="text-center">Average Rating:{{bookres['books'][0]['average_rating']}}</h5>
+        <div class="text-center"><a  href="https://www.goodreads.com/">Goodreads website</a></div>
+    </div>
+</div>
+
+<div class="text-center text-dark mt-sm-5" style= "background-color: #28a745" >
+    <h1 > Users Reviews </h1>
+</div>
+
+<h3 class="text-center m-sm-3"> Make Your Review </h3>
+
+<form action="/book/{{isbn}}" method="post" class="form-border">
+    <div class="d-flex p-3 justify-content-around">
+
+            <div class="form-row">
+                <div class="form-group mr-5 mb-2">
+                    <label for="rating">Rate this book</label>
+                    <select id="rating" name="rating" class="form-control" required>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option selected value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+                </div>
+                <div class="form-group  ml-5">
+                    <div class="input-group ">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Say something</span>
+                        </div>
+                        <textarea name="comment" id="comment" class="form-control" rows="1" required></textarea>
+                    </div>
+    
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-success ml-3" type="submit">Submit</button>
+                </div>
+                
+            </div>
+        </div>
+    </form>
+    {% for comment in book_comment %}
+        <div class="border border-info p-3">
+            
+            <h5 style="color: seagreen" class="ml-sm-3">{{user_name}} says ... </h5>
+            <h3 class="text-center m-sm-2" > Comment: {{comment[0]}} </h3>
+            <h3 class="text-center m-sm-2" > Reated: {{rating}} </h3>
+        </div>
+    {% endfor %}
+{% endblock %}
