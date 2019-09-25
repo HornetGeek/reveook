@@ -31,7 +31,7 @@ def index():
 @app.route("/signup" , methods=['post','get'])
 def signup():
     
-    if request.method == 'GET   ':
+    if request.method == 'GET':
         return render_template('index.html')
     username = request.form.get("username")
     password = request.form.get("password")
