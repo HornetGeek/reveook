@@ -1,6 +1,6 @@
 import os
-
 from flask import Flask, session , render_template , request ,redirect, url_for, jsonify
+from flask_cors import CORS, cross_origin
 from flask_session import Session
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
@@ -24,11 +24,13 @@ db = scoped_session(sessionmaker(bind=engine))
 
 
 @app.route("/" , methods=['post','get'])
+@cross_origin()
 def index():
     return render_template("index.html")
     
 
 @app.route("/signup" , methods=['post','get'])
+@cross_origin()
 def signup():
     
     if request.method == 'GET':
@@ -47,6 +49,7 @@ def signup():
 
 
 @app.route("/signin", methods=['post','get'])
+@cross_origin()
 def signin():
     if request.method == 'GET':
         session.clear()
@@ -65,12 +68,14 @@ def signin():
             return "it doesn't match please try again"
 
 @app.route("/logout")
+@cross_origin()
 def logout():
     session.clear()
     return redirect(url_for("index"))
 
 
 @app.route('/home', methods=['post','get'])
+@cross_origin()
 def home():
     if request.method == 'GET':
         if session:
@@ -102,6 +107,7 @@ def home():
         else:
             return redirect(url_for("signin"))
 @app.route("/search", methods=["post","get"])
+@cross_origin()
 def search():
     if session:
         book_k = "%" + request.args.get("search") + "%"
@@ -120,6 +126,7 @@ def search():
 
 
 @app.route("/book/<isbn>", methods=["post", "get"])
+@cross_origin()
 def book(isbn):
     
     res = requests.get("https://www.goodreads.com/book/review_counts.json", params={"key":"K22LwhtLifzYCcynpWTZWg","isbns":isbn})
@@ -153,6 +160,7 @@ def book(isbn):
 
 
 @app.route("/api/<isbn>",methods=["get"])
+@cross_origin()
 def api_call(isbn):
     row = db.execute("SELECT * FROM books WHERE isbn=:isbn",{"isbn":isbn}).fetchone()
 
