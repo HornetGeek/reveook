@@ -8,7 +8,7 @@ from sqlalchemy.orm import scoped_session, sessionmaker
 import requests
 
 app = Flask(__name__)
-
+CORS(app)
 # Check for environment variable
 if not os.getenv("DATABASE_URL"):
     raise RuntimeError("DATABASE_URL is not set")
